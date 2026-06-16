@@ -1,5 +1,6 @@
 #include "seetfacesever.h"
 #include "ui_seetfacesever.h"
+
 seetfacesever::seetfacesever(QWidget* parent)
     : QMainWindow(parent)
     , ui(new Ui_seetfacesever)
@@ -8,6 +9,7 @@ seetfacesever::seetfacesever(QWidget* parent)
 
     connect(&mserver, &QTcpServer::newConnection, this, &seetfacesever::accept_client);
     mserver.listen(QHostAddress::Any,9999);
+    bsize = 0;
 }
 
 seetfacesever::~seetfacesever()
@@ -28,8 +30,28 @@ void seetfacesever::accept_client()
 //读取客户端发送的数据
 void seetfacesever::read_data()
 {
-    //读取所有的数据
-    QString msg = msocket->readAll();
-    qDebug()<<msg;
-
+    QDataStream stream(msocket); //把套接字绑定到数据流
+    stream.setVersion(QDataStream::Qt_6_1);
+    if(bsize == 0){
+        if(msocket->bytesAvailable()<(qint64)sizeof(bsize)) 
+            return;
+        //采集数据的长度
+        stream>>bsize;
+    }
+    if(msocket->bytesAvailable() < bsize)
+    {
+        return;
+    }
+    QByteArray data;
+    stream>>data;
+    bsize = 0;
+    if(data.size() == 0)//没有读取到数据
+    {
+        return;
+    }
+    //显示图片
+    QPixmap mmp;
+    mmp.loadFromData(data,"jpg");
+    mmp = mmp.scaled(ui->picLb->size());
+    ui->picLb->setPixmap(mmp);
 }

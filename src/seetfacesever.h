@@ -19,4 +19,5 @@ private:
     Ui_seetfacesever* ui;
     QTcpServer mserver;
     QTcpSocket *msocket;
+    quint64 bsize;
 };
