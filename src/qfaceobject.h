@@ -4,6 +4,7 @@
 #include <QObject>
 #include <opencv2/opencv.hpp>
 #include <seeta/FaceDetector.h>
+#include <seeta/FaceEngine.h>
 
 //人脸数据存储， 人脸检测，人脸识别
 class QFaceObject : public QObject
@@ -18,9 +19,8 @@ public slots:
 signals:
 
 private:
-    seeta::FaceEngine  *fengineptr;
+    seeta::FaceEngine *fengineptr;
 
 };
-
 
 #endif // QFACEOBJECT_H
