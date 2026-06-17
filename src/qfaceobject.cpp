@@ -7,6 +7,10 @@ QFaceObject::QFaceObject(QObject *parent) : QObject(parent)
     seeta::ModelSetting  PDmode("D:/Codding/cdd/SeetaFace/bin/model/pd_2_00_pts5.dat",seeta::ModelSetting::GPU,0);
     seeta::ModelSetting  FRmode("D:/Codding/cdd/SeetaFace/bin/model/fr_2_10.dat",seeta::ModelSetting::GPU,0);
     this->fengineptr = new seeta::FaceEngine(FDmode,PDmode,FRmode);
+
+    //导入已有的人脸数据库
+    this->fengineptr->Load("./face.db");
+
 }
 
 QFaceObject::~QFaceObject()

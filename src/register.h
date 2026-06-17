@@ -6,8 +6,8 @@
 
 namespace Ui {
 class Register;
-}
 
+}
 class Register : public QWidget
 {
     Q_OBJECT
@@ -27,6 +27,8 @@ private slots:
 
 private:
     Ui::Register *ui;
+    void birthdayDisplay();
+    void initbirthdayComboBoxes();
 };
 
 #endif // REGISTER_H

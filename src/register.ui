@@ -102,19 +102,35 @@
         </widget>
        </item>
        <item>
-        <widget class="QDateEdit" name="birthdayEdit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>15</pointsize>
-          </font>
-         </property>
-        </widget>
+        <layout class="QHBoxLayout" name="birthdayLayout">
+         <item>
+          <widget class="QComboBox" name="yearCb">
+           <property name="font">
+            <font>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="monthCb">
+           <property name="font">
+            <font>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="dayCb">
+           <property name="font">
+            <font>
+             <pointsize>15</pointsize>
+            </font>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </item>
@@ -128,7 +144,7 @@
           </font>
          </property>
          <property name="text">
-          <string>地址：</string>
+          <string>部门：</string>
          </property>
         </widget>
        </item>
