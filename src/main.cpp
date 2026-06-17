@@ -1,8 +1,10 @@
 #include "seetfacesever.h"
+#include "register.h"
 #include <QApplication>
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+
 #pragma comment(lib, "user32.lib")
 
 int main(int argc, char *argv[])
@@ -37,7 +39,7 @@ int main(int argc, char *argv[])
        qDebug()<<query.lastError().text();
        return -1;
     }
-    seetfacesever w;
-    w.show();
+    Register r;
+    r.show();
     return a.exec();
 }
