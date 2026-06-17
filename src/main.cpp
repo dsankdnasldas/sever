@@ -1,5 +1,4 @@
 #include "seetfacesever.h"
-
 #include <QApplication>
 #include <QSqlDatabase>
 #include <QSqlError>
