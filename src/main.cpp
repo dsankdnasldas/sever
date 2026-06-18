@@ -40,7 +40,9 @@ int main(int argc, char *argv[])
        qDebug()<<query.lastError().text();
        return -1;
     }
-    Register r;
-    r.show();
+    seetfacesever w;
+    w.show();
+    //Register r;
+    //r.show();
     return a.exec();
 }

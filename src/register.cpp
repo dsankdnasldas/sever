@@ -1,6 +1,4 @@
 #include "register.h"
-#include "qfaceobject.h"
-
 #include <QDate>
 #include <QDebug>
 #include <QDir>

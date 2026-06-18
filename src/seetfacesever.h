@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include <QTcpSocket>
 #include <QTcpServer>
+#include "qfaceobject.h"
 
 class seetfacesever : public QMainWindow {
     Q_OBJECT
@@ -20,4 +21,5 @@ private:
     QTcpServer mserver;
     QTcpSocket *msocket;
     quint64 bsize;
+    QFaceObject faceobj;
 };

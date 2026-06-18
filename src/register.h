@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "ui_register.h"
+#include "qfaceobject.h"
 #include <opencv2/opencv.hpp>
 
 namespace Ui {
