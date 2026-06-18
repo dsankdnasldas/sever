@@ -17,7 +17,7 @@ public slots:
     int64_t face_register(cv::Mat& faceImage);
     int face_query(cv::Mat& faceImage);
 signals:
-
+    void send_faceid(int64_t faceid);
 private:
     seeta::FaceEngine *fengineptr;
 
