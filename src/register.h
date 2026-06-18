@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "ui_register.h"
+#include <opencv2/opencv.hpp>
 
 namespace Ui {
 class Register;
@@ -15,6 +16,7 @@ class Register : public QWidget
 public:
     explicit Register(QWidget *parent = nullptr);
     ~Register();
+    void timerEvent(QTimerEvent *e);
 
 private slots:
     void on_resetBt_clicked();
@@ -23,10 +25,17 @@ private slots:
 
     void on_registerBt_clicked();
 
+    void on_videoswitchBt_clicked();
+
+    void on_cameraBt_clicked();
+
     void on_bluetoothBt_clicked();
 
 private:
     Ui::Register *ui;
+    int timerid;
+    cv::VideoCapture cap;
+    cv::Mat image;
     void birthdayDisplay();
     void initbirthdayComboBoxes();
 };

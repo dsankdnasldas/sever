@@ -10,6 +10,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    cv::setUseOptimized(false);
     //连接数据库
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     //设置数据名称

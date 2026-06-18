@@ -33,9 +33,28 @@ void Register::on_resetBt_clicked()
     initbirthdayComboBoxes();
 }
 
+void Register::timerEvent(QTimerEvent *e)
+{
+
+    //获取摄像头数据并且显示在界面上
+    if(cap.isOpened())
+    {
+        cap>>image;
+        if(image.data == nullptr) return;
+    }
+    //Mat---》QImage
+    cv::Mat rgbImage;
+    cv::cvtColor(image,rgbImage,cv::COLOR_BGR2RGB);
+    QImage qImg(rgbImage.data, rgbImage.cols, rgbImage.rows,rgbImage.step1(), QImage::Format_RGB888);
+    //在qt界面上显示
+    QPixmap mmp=QPixmap::fromImage(qImg);
+    mmp = mmp.scaledToWidth(ui->headpicLb->width());
+    ui->headpicLb->setPixmap(mmp);
+}
+
 void Register::on_addpicBt_clicked()
 {
-    const QString filepath = QFileDialog::getOpenFileName(this);
+    const QString filepath = QFileDialog::getOpenFileName(this, "选择图片", "./data", "Images (*.png *.jpg)");
     if (filepath.isEmpty()) {
         return;
     }
@@ -44,7 +63,6 @@ void Register::on_addpicBt_clicked()
 
     QPixmap pixmap(filepath);
     pixmap = pixmap.scaledToWidth(ui->headpicLb->width());
-    ui->headpicLb->setPixmap(pixmap);
 }
 
 void Register::on_registerBt_clicked()
@@ -83,6 +101,41 @@ void Register::on_registerBt_clicked()
     } else {
         QMessageBox::information(this, "注册提示", "注册失败");
     }
+}
+
+void Register::on_videoswitchBt_clicked()
+{
+    if(ui->videoswitchBt->text() == "打开摄像头")
+    {
+        //打开摄像头
+        if(cap.open(0))
+        {
+            ui->videoswitchBt->setText("关闭摄像头");
+            //启动定时器事件
+            timerid = startTimer(100);
+        }
+    }else
+    {
+
+        killTimer(timerid);//关闭定时器事件
+        ui->videoswitchBt->setText("打开摄像头");
+        //关闭摄像头
+        cap.release();
+        ui->headpicLb->clear();
+    }
+}
+
+void Register::on_cameraBt_clicked()
+{
+    //保存数据
+    //把头像保存到一个固定路径下
+    QString headfile = QString("./data/1.jpg").arg(QString(ui->nameEdit->text().toUtf8().toBase64()));
+    ui->picFileEdit->setText(headfile);
+    cv::imwrite(headfile.toUtf8().data(), image);
+    killTimer(timerid);//关闭定时器事件
+    ui->videoswitchBt->setText("打开摄像头");
+    //关闭摄像头
+    cap.release();
 }
 
 void Register::on_bluetoothBt_clicked()
