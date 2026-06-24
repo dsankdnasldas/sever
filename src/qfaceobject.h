@@ -5,6 +5,7 @@
 #include <opencv2/opencv.hpp>
 #include <seeta/FaceDetector.h>
 #include <seeta/FaceEngine.h>
+#include <qDebug>
 
 //人脸数据存储， 人脸检测，人脸识别
 class QFaceObject : public QObject

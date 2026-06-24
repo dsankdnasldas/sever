@@ -4,13 +4,17 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
-
+#include <opencv2/opencv.hpp>
 #pragma comment(lib, "user32.lib")
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     cv::setUseOptimized(false);
+
+    qRegisterMetaType<cv::Mat>("cv::Mat&");
+    qRegisterMetaType<cv::Mat>("cv::Mat");
+    qRegisterMetaType<int64_t>("int64_t");
     //连接数据库
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     //设置数据名称
