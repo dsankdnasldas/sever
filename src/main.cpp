@@ -1,5 +1,6 @@
 #include "seetfacesever.h"
 #include "register.h"
+#include "selectwin.h"
 #include <QApplication>
 #include <QSqlDatabase>
 #include <QSqlError>
@@ -46,7 +47,9 @@ int main(int argc, char *argv[])
     }
     seetfacesever w;
     w.show();
-    //Register r;
-    //r.show();
+    Register r;
+    r.show();
+    SelectWin sw;
+    sw.show();
     return a.exec();
 }

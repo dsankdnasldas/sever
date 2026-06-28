@@ -85,7 +85,7 @@ void seetfacesever::recv_faceid(int64_t faceid)
     qDebug()<<"识别到的人脸id:"<<faceid;
     if(faceid < 0)
     {
-        QString sdmsg = QString("{\"employeeID\":,\"name\":,\"department\":,\"time\":}");
+        QString sdmsg = QString("{\"employeeID\":\" \",\"name\":\"\",\"department\":\"\",\"time\":\"\"}");
         msocket->write(sdmsg.toUtf8());//把打包好的数据发送给客户端
         return ;
     }
@@ -101,8 +101,19 @@ void seetfacesever::recv_faceid(int64_t faceid)
         QString sdmsg = QString("{\"employeeID\":\"%1\",\"name\":\"%2\",\"department\":\"软件\",\"time\":\"%3\"}")
                 .arg(record.value("employeeID").toString()).arg(record.value("name").toString())
                 .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
-
-        msocket->write(sdmsg.toUtf8());//把打包好的数据发送给客户端
         //把数据写入数据库--考勤表
+        QString insertSql = QString("insert into attendance(employeeID) values('%1')").arg(record.value("employeeID").toString());
+        QSqlQuery query;
+        if(!query.exec(insertSql))
+        {
+            QString sdmsg = QString("{\"employeeID\":\" \",\"name\":\"\",\"department\":\"\",\"time\":\"\"}");
+            msocket->write(sdmsg.toUtf8());//把打包好的数据发送给客户端
+            qDebug()<<query.lastError().text();
+            return ;
+        }else
+        {
+            msocket->write(sdmsg.toUtf8());//把打包好的数据发送给客户端
+        }
+
     }
 }

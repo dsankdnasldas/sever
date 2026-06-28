@@ -8,6 +8,8 @@
 #include <QSqlRecord>
 #include <QDateTime>
 #include <QThread>
+#include <QSqlQuery>
+#include <QSqlError>
 
 class seetfacesever : public QMainWindow {
     Q_OBJECT

@@ -11,7 +11,20 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 COMPONENTS Widgets Sql Network REQUIRED)
 
-aux_source_directory(./src srcs)
+set(srcs
+    src/main.cpp
+    src/qfaceobject.cpp
+    src/qfaceobject.h
+    src/register.cpp
+    src/register.h
+    src/register.ui
+    src/seetfacesever.cpp
+    src/seetfacesever.h
+    src/seetfacesever.ui
+    src/selectwin.cpp
+    src/selectwin.h
+    src/selectwin.ui
+)
 
 add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
