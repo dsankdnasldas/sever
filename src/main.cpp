@@ -47,9 +47,5 @@ int main(int argc, char *argv[])
     }
     seetfacesever w;
     w.show();
-    Register r;
-    r.show();
-    SelectWin sw;
-    sw.show();
     return a.exec();
 }

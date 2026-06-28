@@ -14,24 +14,66 @@
    <string>seetfacesever</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="picLb">
+   <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>0</x>
       <y>10</y>
-      <width>411</width>
-      <height>401</height>
+      <width>651</width>
+      <height>411</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 170, 255);</string>
+    <property name="currentIndex">
+     <number>1</number>
     </property>
-    <property name="text">
-     <string/>
-    </property>
+    <widget class="QWidget" name="showWidget">
+     <attribute name="title">
+      <string>考勤图像</string>
+     </attribute>
+     <widget class="QLabel" name="picLb">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>371</width>
+        <height>341</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="Register" name="registerWidget">
+     <attribute name="title">
+      <string>注册</string>
+     </attribute>
+    </widget>
+    <widget class="SelectWin" name="selectWidget">
+     <attribute name="title">
+      <string>查询</string>
+     </attribute>
+    </widget>
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SelectWin</class>
+   <extends>QWidget</extends>
+   <header>selectwin.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Register</class>
+   <extends>QWidget</extends>
+   <header location="global">register.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
